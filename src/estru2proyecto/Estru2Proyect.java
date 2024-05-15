@@ -26,11 +26,23 @@ public class Estru2Proyect extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jd_Archivos = new javax.swing.JDialog();
         jPanel1 = new javax.swing.JPanel();
         jb_Archivos = new javax.swing.JButton();
         jb_Campos = new javax.swing.JButton();
         jb_Registros = new javax.swing.JButton();
         jb_Indices = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jd_ArchivosLayout = new javax.swing.GroupLayout(jd_Archivos.getContentPane());
+        jd_Archivos.getContentPane().setLayout(jd_ArchivosLayout);
+        jd_ArchivosLayout.setHorizontalGroup(
+            jd_ArchivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jd_ArchivosLayout.setVerticalGroup(
+            jd_ArchivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Proyecto Estru II");
@@ -52,6 +64,11 @@ public class Estru2Proyect extends javax.swing.JFrame {
         });
 
         jb_Registros.setText("Registros");
+        jb_Registros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_RegistrosActionPerformed(evt);
+            }
+        });
 
         jb_Indices.setText("Indices");
 
@@ -105,6 +122,10 @@ public class Estru2Proyect extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jb_CamposActionPerformed
 
+    private void jb_RegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_RegistrosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jb_RegistrosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -146,5 +167,6 @@ public class Estru2Proyect extends javax.swing.JFrame {
     private javax.swing.JButton jb_Campos;
     private javax.swing.JButton jb_Indices;
     private javax.swing.JButton jb_Registros;
+    private javax.swing.JDialog jd_Archivos;
     // End of variables declaration//GEN-END:variables
 }
