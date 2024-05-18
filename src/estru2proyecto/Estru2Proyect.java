@@ -43,8 +43,7 @@ public class Estru2Proyect extends javax.swing.JFrame {
         jb_Campos = new javax.swing.JButton();
         jb_Registros = new javax.swing.JButton();
         jb_Indices = new javax.swing.JButton();
-
-        jd_Archivos.setPreferredSize(new java.awt.Dimension(693, 490));
+        jSeparator1 = new javax.swing.JSeparator();
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -112,8 +111,11 @@ public class Estru2Proyect extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Proyecto Estru II");
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(175, 175, 255));
 
+        jb_Archivos.setBackground(new java.awt.Color(125, 125, 241));
+        jb_Archivos.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jb_Archivos.setForeground(new java.awt.Color(22, 22, 79));
         jb_Archivos.setText("Archivos");
         jb_Archivos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -126,10 +128,19 @@ public class Estru2Proyect extends javax.swing.JFrame {
             }
         });
 
+        jb_Campos.setBackground(new java.awt.Color(125, 125, 241));
+        jb_Campos.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jb_Campos.setForeground(new java.awt.Color(22, 22, 79));
         jb_Campos.setText("Campos");
 
+        jb_Registros.setBackground(new java.awt.Color(125, 125, 241));
+        jb_Registros.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jb_Registros.setForeground(new java.awt.Color(22, 22, 79));
         jb_Registros.setText("Registros");
 
+        jb_Indices.setBackground(new java.awt.Color(125, 125, 241));
+        jb_Indices.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jb_Indices.setForeground(new java.awt.Color(22, 22, 79));
         jb_Indices.setText("Indices");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -144,11 +155,17 @@ public class Estru2Proyect extends javax.swing.JFrame {
                     .addComponent(jb_Registros, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jb_Indices, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(298, 298, 298))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSeparator1)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(97, Short.MAX_VALUE)
+                .addContainerGap(75, Short.MAX_VALUE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jb_Archivos, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jb_Campos, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -174,22 +191,9 @@ public class Estru2Proyect extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jb_ArchivosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jb_ArchivosKeyPressed
-        
-        
-    }//GEN-LAST:event_jb_ArchivosKeyPressed
-
     private void jb_Archivos1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jb_Archivos1KeyPressed
         
     }//GEN-LAST:event_jb_Archivos1KeyPressed
-
-    private void jb_ArchivosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_ArchivosMouseClicked
-        this.setVisible(false);
-        jd_Archivos.setModal(true);
-        jd_Archivos.pack();
-        jd_Archivos.setLocationRelativeTo(this);
-        jd_Archivos.setVisible(true);
-    }//GEN-LAST:event_jb_ArchivosMouseClicked
 
     private void jb_Archivos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Archivos1ActionPerformed
         // TODO add your handling code here:
@@ -209,6 +213,18 @@ public class Estru2Proyect extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jb_Archivos1MouseClicked
+
+    private void jb_ArchivosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jb_ArchivosKeyPressed
+
+    }//GEN-LAST:event_jb_ArchivosKeyPressed
+
+    private void jb_ArchivosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_ArchivosMouseClicked
+        this.setVisible(false);
+        jd_Archivos.setModal(true);
+        jd_Archivos.pack();
+        jd_Archivos.setLocationRelativeTo(this);
+        jd_Archivos.setVisible(true);
+    }//GEN-LAST:event_jb_ArchivosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -248,6 +264,7 @@ public class Estru2Proyect extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jb_Archivos;
     private javax.swing.JButton jb_Archivos1;
     private javax.swing.JButton jb_Campos;
