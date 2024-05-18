@@ -4,6 +4,12 @@
  */
 package estru2proyecto;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author samue
@@ -27,21 +33,80 @@ public class Estru2Proyect extends javax.swing.JFrame {
     private void initComponents() {
 
         jd_Archivos = new javax.swing.JDialog();
+        jPanel2 = new javax.swing.JPanel();
+        jb_Archivos1 = new javax.swing.JButton();
+        jb_Campos1 = new javax.swing.JButton();
+        jb_Registros1 = new javax.swing.JButton();
+        jb_Indices1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jb_Archivos = new javax.swing.JButton();
         jb_Campos = new javax.swing.JButton();
         jb_Registros = new javax.swing.JButton();
         jb_Indices = new javax.swing.JButton();
 
+        jd_Archivos.setPreferredSize(new java.awt.Dimension(693, 490));
+
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+
+        jb_Archivos1.setText("Nuevo Archivo");
+        jb_Archivos1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_Archivos1MouseClicked(evt);
+            }
+        });
+        jb_Archivos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_Archivos1ActionPerformed(evt);
+            }
+        });
+        jb_Archivos1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jb_Archivos1KeyPressed(evt);
+            }
+        });
+
+        jb_Campos1.setText("Campos");
+
+        jb_Registros1.setText("Registros");
+
+        jb_Indices1.setText("Indices");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(285, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jb_Archivos1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jb_Campos1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jb_Registros1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jb_Indices1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(277, 277, 277))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(97, Short.MAX_VALUE)
+                .addComponent(jb_Archivos1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jb_Campos1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jb_Registros1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jb_Indices1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(91, 91, 91))
+        );
+
         javax.swing.GroupLayout jd_ArchivosLayout = new javax.swing.GroupLayout(jd_Archivos.getContentPane());
         jd_Archivos.getContentPane().setLayout(jd_ArchivosLayout);
         jd_ArchivosLayout.setHorizontalGroup(
             jd_ArchivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jd_ArchivosLayout.setVerticalGroup(
             jd_ArchivosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -50,25 +115,20 @@ public class Estru2Proyect extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
         jb_Archivos.setText("Archivos");
-        jb_Archivos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb_ArchivosActionPerformed(evt);
+        jb_Archivos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_ArchivosMouseClicked(evt);
+            }
+        });
+        jb_Archivos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jb_ArchivosKeyPressed(evt);
             }
         });
 
         jb_Campos.setText("Campos");
-        jb_Campos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb_CamposActionPerformed(evt);
-            }
-        });
 
         jb_Registros.setText("Registros");
-        jb_Registros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb_RegistrosActionPerformed(evt);
-            }
-        });
 
         jb_Indices.setText("Indices");
 
@@ -114,17 +174,41 @@ public class Estru2Proyect extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jb_ArchivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_ArchivosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jb_ArchivosActionPerformed
+    private void jb_ArchivosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jb_ArchivosKeyPressed
+        
+        
+    }//GEN-LAST:event_jb_ArchivosKeyPressed
 
-    private void jb_CamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_CamposActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jb_CamposActionPerformed
+    private void jb_Archivos1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jb_Archivos1KeyPressed
+        
+    }//GEN-LAST:event_jb_Archivos1KeyPressed
 
-    private void jb_RegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_RegistrosActionPerformed
+    private void jb_ArchivosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_ArchivosMouseClicked
+        this.setVisible(false);
+        jd_Archivos.setModal(true);
+        jd_Archivos.pack();
+        jd_Archivos.setLocationRelativeTo(this);
+        jd_Archivos.setVisible(true);
+    }//GEN-LAST:event_jb_ArchivosMouseClicked
+
+    private void jb_Archivos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Archivos1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jb_RegistrosActionPerformed
+    }//GEN-LAST:event_jb_Archivos1ActionPerformed
+
+    private void jb_Archivos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_Archivos1MouseClicked
+        String nombreArchivo = JOptionPane.showInputDialog("Ingrese el nombre del archivo");
+        try {
+            File archivo = new File(nombreArchivo + ".est");
+
+            FileWriter escritor = new FileWriter(archivo);
+            escritor.write("¡Hola, mundo!");
+            escritor.close(); 
+
+        } catch (IOException e) {
+        }
+        
+        
+    }//GEN-LAST:event_jb_Archivos1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -163,10 +247,15 @@ public class Estru2Proyect extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JButton jb_Archivos;
+    private javax.swing.JButton jb_Archivos1;
     private javax.swing.JButton jb_Campos;
+    private javax.swing.JButton jb_Campos1;
     private javax.swing.JButton jb_Indices;
+    private javax.swing.JButton jb_Indices1;
     private javax.swing.JButton jb_Registros;
+    private javax.swing.JButton jb_Registros1;
     private javax.swing.JDialog jd_Archivos;
     // End of variables declaration//GEN-END:variables
 }
