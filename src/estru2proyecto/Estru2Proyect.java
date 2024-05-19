@@ -113,6 +113,9 @@ public class Estru2Proyect extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jl_Borrar = new javax.swing.JList<>();
         jb_borrar = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jl_ModificarCampos = new javax.swing.JList<>();
+        jb_ModificarCampos = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jt_ListarCampos = new javax.swing.JTable();
         jtf_NomCampo = new javax.swing.JTextField();
@@ -463,6 +466,11 @@ public class Estru2Proyect extends javax.swing.JFrame {
         });
 
         jb_Registros2.setText("Modificar");
+        jb_Registros2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_Registros2ActionPerformed(evt);
+            }
+        });
 
         jb_Indices2.setText("Borrar");
         jb_Indices2.addActionListener(new java.awt.event.ActionListener() {
@@ -578,15 +586,50 @@ public class Estru2Proyect extends javax.swing.JFrame {
                     .addContainerGap(15, Short.MAX_VALUE)))
         );
 
+        jl_ModificarCampos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jl_ModificarCampos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_ModificarCamposMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(jl_ModificarCampos);
+
+        jb_ModificarCampos.setText("Modificar");
+        jb_ModificarCampos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_ModificarCamposActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jp_ModificarCamposLayout = new javax.swing.GroupLayout(jp_ModificarCampos);
         jp_ModificarCampos.setLayout(jp_ModificarCamposLayout);
         jp_ModificarCamposLayout.setHorizontalGroup(
             jp_ModificarCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jp_BorrarCampos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jp_ModificarCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jp_ModificarCamposLayout.createSequentialGroup()
+                    .addGap(79, 79, 79)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(80, Short.MAX_VALUE)))
+            .addGroup(jp_ModificarCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jp_ModificarCamposLayout.createSequentialGroup()
+                    .addGap(200, 200, 200)
+                    .addComponent(jb_ModificarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(206, Short.MAX_VALUE)))
         );
         jp_ModificarCamposLayout.setVerticalGroup(
             jp_ModificarCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jp_BorrarCampos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jp_ModificarCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jp_ModificarCamposLayout.createSequentialGroup()
+                    .addGap(83, 83, 83)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(84, Short.MAX_VALUE)))
+            .addGroup(jp_ModificarCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jp_ModificarCamposLayout.createSequentialGroup()
+                    .addGap(456, 456, 456)
+                    .addComponent(jb_ModificarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(16, Short.MAX_VALUE)))
         );
 
         jt_ListarCampos.setModel(new javax.swing.table.DefaultTableModel(
@@ -1091,38 +1134,61 @@ public class Estru2Proyect extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_Campos2ActionPerformed
 
     private void jb_CrearCampoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_CrearCampoMouseClicked
-        if (Campos.size() < 10) {
-            boolean check = true;
-            if (jtf_NomCampo.getText().equals("")) {
-                JOptionPane.showMessageDialog(rootPane, "Tiene que crear al menos un campo");
-                check = false;
-            }
-            if ((int) js_longitud.getValue() < 1) {
-                JOptionPane.showMessageDialog(rootPane, "La longitud debe ser mas de 0");
-                check = false;
-            }
-
-            if (Campos.isEmpty() && jcb_llavePrimaria.isSelected() == false) {
-                jcb_llavePrimaria.setSelected(true);
-            } else if (jcb_llavePrimaria.isSelected()) {
-
+        if (modificar) {
+            
+            Campos.get(Campos.indexOf(cam)).setNombre(jtf_NomCampo.getText());
+            Campos.get(Campos.indexOf(cam)).setTipo((String)jcb_tipoDato.getSelectedItem());
+            Campos.get(Campos.indexOf(cam)).setLongitud((int)js_longitud.getValue());
+            if(jcb_llavePrimaria.isSelected()){
                 for (int i = 0; i < Campos.size(); i++) {
-                    if (Campos.get(i).isLlavePrimaria()) {
+                    if(Campos.get(i).isLlavePrimaria()){
                         Campos.get(i).setLlavePrimaria(false);
                     }
                 }
             }
-
-            if (check) {
-                Campos.add(new Campo(jtf_NomCampo.getText(), (String) jcb_tipoDato.getSelectedItem(), (int) js_longitud.getValue(), jcb_llavePrimaria.isSelected()));
-            }
-
+            Campos.get(Campos.indexOf(cam)).setLlavePrimaria(jcb_llavePrimaria.isSelected());
+            
             jtf_NomCampo.setText("");
             jcb_tipoDato.setSelectedItem("Boolean");
             js_longitud.setValue(0);
             jcb_llavePrimaria.setSelected(false);
+            
+            modificar = false;
+            
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Hay un maximo de 10 Campos");
+            if (Campos.size() < 10) {
+                boolean check = true;
+                if (jtf_NomCampo.getText().equals("")) {
+                    JOptionPane.showMessageDialog(rootPane, "Tiene que crear al menos un campo");
+                    check = false;
+                }
+                if ((int) js_longitud.getValue() < 1) {
+                    JOptionPane.showMessageDialog(rootPane, "La longitud debe ser mas de 0");
+                    check = false;
+                }
+
+                if (Campos.isEmpty() && jcb_llavePrimaria.isSelected() == false) {
+                    jcb_llavePrimaria.setSelected(true);
+                } else if (jcb_llavePrimaria.isSelected()) {
+
+                    for (int i = 0; i < Campos.size(); i++) {
+                        if (Campos.get(i).isLlavePrimaria()) {
+                            Campos.get(i).setLlavePrimaria(false);
+                        }
+                    }
+                }
+
+                if (check) {
+                    Campos.add(new Campo(jtf_NomCampo.getText(), (String) jcb_tipoDato.getSelectedItem(), (int) js_longitud.getValue(), jcb_llavePrimaria.isSelected()));
+                }
+
+                jtf_NomCampo.setText("");
+                jcb_tipoDato.setSelectedItem("Boolean");
+                js_longitud.setValue(0);
+                jcb_llavePrimaria.setSelected(false);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Hay un maximo de 10 Campos");
+            }
         }
 
     }//GEN-LAST:event_jb_CrearCampoMouseClicked
@@ -1145,19 +1211,58 @@ public class Estru2Proyect extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_Indices2ActionPerformed
 
     private void jl_BorrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_BorrarMouseClicked
-        
+
     }//GEN-LAST:event_jl_BorrarMouseClicked
 
     private void jb_borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_borrarActionPerformed
         cam = Campos.get(jl_Borrar.getSelectedIndex());
         Campos.remove(jl_Borrar.getSelectedIndex());
-        if(Campos.size() >= 1 && cam.isLlavePrimaria() == true){
+        if (Campos.size() >= 1 && cam.isLlavePrimaria() == true) {
             Campos.get(0).setLlavePrimaria(true);
         }
         DefaultListModel lm = new DefaultListModel();
         lm.addAll(Campos);
         jl_Borrar.setModel(lm);
     }//GEN-LAST:event_jb_borrarActionPerformed
+
+    private void jb_Registros2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Registros2ActionPerformed
+        if (Campos.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No hay Campos");
+        } else {
+
+            DefaultListModel lm = new DefaultListModel();
+            lm.addAll(Campos);
+            jl_ModificarCampos.setModel(lm);
+            jp_CrearCampos.setVisible(true);
+            jp_ListarCampos.setVisible(true);
+            jp_ModificarCampos.setVisible(true);
+            jp_BorrarCampos.setVisible(false);
+            jp_Vacio.setVisible(false);
+        }
+    }//GEN-LAST:event_jb_Registros2ActionPerformed
+
+    private void jl_ModificarCamposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_ModificarCamposMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jl_ModificarCamposMouseClicked
+
+    private void jb_ModificarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_ModificarCamposActionPerformed
+        cam = Campos.get(jl_ModificarCampos.getSelectedIndex());
+
+        jtf_NomCampo.setText(cam.getNombre());
+        jcb_tipoDato.setSelectedItem(cam.getTipo());
+        js_longitud.setValue(cam.getLongitud());
+        jcb_llavePrimaria.setSelected(cam.isLlavePrimaria());
+        jb_CrearCampo.setText("Modificar");
+
+        modificar = true;
+        jp_CrearCampos.setVisible(true);
+        jp_ListarCampos.setVisible(false);
+        jp_ModificarCampos.setVisible(false);
+        jp_BorrarCampos.setVisible(false);
+        jp_Vacio.setVisible(false);
+
+
+    }//GEN-LAST:event_jb_ModificarCamposActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1212,6 +1317,7 @@ public class Estru2Proyect extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton jb_Archivos;
@@ -1227,6 +1333,7 @@ public class Estru2Proyect extends javax.swing.JFrame {
     private javax.swing.JButton jb_Indices;
     private javax.swing.JButton jb_Indices1;
     private javax.swing.JButton jb_Indices2;
+    private javax.swing.JButton jb_ModificarCampos;
     private javax.swing.JButton jb_Registros;
     private javax.swing.JButton jb_Registros1;
     private javax.swing.JButton jb_Registros2;
@@ -1248,6 +1355,7 @@ public class Estru2Proyect extends javax.swing.JFrame {
     private javax.swing.JDialog jd_Campos;
     private javax.swing.JDialog jd_CrearCampos;
     private javax.swing.JList<Campo> jl_Borrar;
+    private javax.swing.JList<Campo> jl_ModificarCampos;
     private javax.swing.JPanel jp_BorrarCampos;
     private javax.swing.JPanel jp_CrearCampos;
     private javax.swing.JPanel jp_ListarCampos;
@@ -1289,4 +1397,5 @@ public class Estru2Proyect extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     ArrayList<Campo> Campos = new ArrayList();
     Campo cam;
+    boolean modificar = false;
 }
