@@ -46,6 +46,11 @@ public class Campo {
     public void setLlavePrimaria(boolean llavePrimaria) {
         this.llavePrimaria = llavePrimaria;
     }
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
     
     
 }

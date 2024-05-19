@@ -13,6 +13,9 @@ import java.util.LinkedList;
 import javax.swing.JOptionPane;
 import javax.swing.*;
 import java.awt.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.text.TableView.TableRow;
 
 /**
  *
@@ -25,7 +28,7 @@ public class Estru2Proyect extends javax.swing.JFrame {
      */
     public Estru2Proyect() {
         initComponents();
-        
+
     }
 
     /**
@@ -102,6 +105,25 @@ public class Estru2Proyect extends javax.swing.JFrame {
         jb_Registros2 = new javax.swing.JButton();
         jb_Indices2 = new javax.swing.JButton();
         jb_CerrarPrograma2 = new javax.swing.JButton();
+        jp_CrearCampos = new javax.swing.JPanel();
+        jp_ListarCampos = new javax.swing.JPanel();
+        jp_ModificarCampos = new javax.swing.JPanel();
+        jp_BorrarCampos = new javax.swing.JPanel();
+        jp_Vacio = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jl_Borrar = new javax.swing.JList<>();
+        jb_borrar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jt_ListarCampos = new javax.swing.JTable();
+        jtf_NomCampo = new javax.swing.JTextField();
+        jb_CrearCampo = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jcb_tipoDato = new javax.swing.JComboBox<>();
+        jcb_llavePrimaria = new javax.swing.JCheckBox();
+        jLabel7 = new javax.swing.JLabel();
+        js_longitud = new javax.swing.JSpinner();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jb_Archivos = new javax.swing.JButton();
         jb_Campos = new javax.swing.JButton();
@@ -211,6 +233,7 @@ public class Estru2Proyect extends javax.swing.JFrame {
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         buttonGroup1.add(jrb_llavePrimaria1);
+        jrb_llavePrimaria1.setSelected(true);
         jPanel3.add(jrb_llavePrimaria1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
         buttonGroup1.add(jrb_llavePrimaria2);
@@ -432,11 +455,21 @@ public class Estru2Proyect extends javax.swing.JFrame {
             }
         });
 
-        jb_Campos2.setText("M");
+        jb_Campos2.setText("Listar");
+        jb_Campos2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_Campos2ActionPerformed(evt);
+            }
+        });
 
-        jb_Registros2.setText("Registros");
+        jb_Registros2.setText("Modificar");
 
-        jb_Indices2.setText("Indices");
+        jb_Indices2.setText("Borrar");
+        jb_Indices2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_Indices2ActionPerformed(evt);
+            }
+        });
 
         jb_CerrarPrograma2.setText("Cerrar Programa");
         jb_CerrarPrograma2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -450,25 +483,24 @@ public class Estru2Proyect extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(285, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jb_crearCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jb_Campos2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jb_Registros2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jb_Indices2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(277, 277, 277))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jb_CerrarPrograma2)
-                        .addContainerGap())))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jb_CerrarPrograma2)
+                .addContainerGap())
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jb_crearCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jb_Campos2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jb_Registros2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jb_Indices2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jb_CerrarPrograma2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addGap(66, 66, 66)
                 .addComponent(jb_crearCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jb_Campos2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -476,18 +508,235 @@ public class Estru2Proyect extends javax.swing.JFrame {
                 .addComponent(jb_Registros2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jb_Indices2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(91, 91, 91))
+                .addContainerGap(104, Short.MAX_VALUE))
+        );
+
+        jp_CrearCampos.setBackground(new java.awt.Color(153, 153, 153));
+
+        jp_ListarCampos.setBackground(new java.awt.Color(153, 153, 153));
+
+        jp_ModificarCampos.setBackground(new java.awt.Color(153, 153, 153));
+
+        jp_BorrarCampos.setBackground(new java.awt.Color(153, 153, 153));
+
+        jp_Vacio.setBackground(new java.awt.Color(153, 153, 153));
+
+        javax.swing.GroupLayout jp_VacioLayout = new javax.swing.GroupLayout(jp_Vacio);
+        jp_Vacio.setLayout(jp_VacioLayout);
+        jp_VacioLayout.setHorizontalGroup(
+            jp_VacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 494, Short.MAX_VALUE)
+        );
+        jp_VacioLayout.setVerticalGroup(
+            jp_VacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 514, Short.MAX_VALUE)
+        );
+
+        jl_Borrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jl_Borrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_BorrarMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jl_Borrar);
+
+        jb_borrar.setText("Borrar");
+        jb_borrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_borrarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jp_BorrarCamposLayout = new javax.swing.GroupLayout(jp_BorrarCampos);
+        jp_BorrarCampos.setLayout(jp_BorrarCamposLayout);
+        jp_BorrarCamposLayout.setHorizontalGroup(
+            jp_BorrarCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jp_Vacio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jp_BorrarCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jp_BorrarCamposLayout.createSequentialGroup()
+                    .addGap(79, 79, 79)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(80, Short.MAX_VALUE)))
+            .addGroup(jp_BorrarCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jp_BorrarCamposLayout.createSequentialGroup()
+                    .addGap(204, 204, 204)
+                    .addComponent(jb_borrar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(205, Short.MAX_VALUE)))
+        );
+        jp_BorrarCamposLayout.setVerticalGroup(
+            jp_BorrarCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jp_Vacio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jp_BorrarCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jp_BorrarCamposLayout.createSequentialGroup()
+                    .addGap(83, 83, 83)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(84, Short.MAX_VALUE)))
+            .addGroup(jp_BorrarCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jp_BorrarCamposLayout.createSequentialGroup()
+                    .addGap(458, 458, 458)
+                    .addComponent(jb_borrar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(15, Short.MAX_VALUE)))
+        );
+
+        javax.swing.GroupLayout jp_ModificarCamposLayout = new javax.swing.GroupLayout(jp_ModificarCampos);
+        jp_ModificarCampos.setLayout(jp_ModificarCamposLayout);
+        jp_ModificarCamposLayout.setHorizontalGroup(
+            jp_ModificarCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jp_BorrarCampos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jp_ModificarCamposLayout.setVerticalGroup(
+            jp_ModificarCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jp_BorrarCampos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jt_ListarCampos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Nombre", "Tipo de Dato", "Longitud", "Llave Primaria"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Boolean.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jt_ListarCampos);
+
+        javax.swing.GroupLayout jp_ListarCamposLayout = new javax.swing.GroupLayout(jp_ListarCampos);
+        jp_ListarCampos.setLayout(jp_ListarCamposLayout);
+        jp_ListarCamposLayout.setHorizontalGroup(
+            jp_ListarCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jp_ModificarCampos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jp_ListarCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jp_ListarCamposLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        jp_ListarCamposLayout.setVerticalGroup(
+            jp_ListarCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jp_ModificarCampos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jp_ListarCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jp_ListarCamposLayout.createSequentialGroup()
+                    .addGap(32, 32, 32)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(32, Short.MAX_VALUE)))
+        );
+
+        jtf_NomCampo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtf_NomCampo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtf_NomCampoActionPerformed(evt);
+            }
+        });
+
+        jb_CrearCampo.setText("Crear");
+        jb_CrearCampo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_CrearCampoMouseClicked(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Nombre de Campo");
+        jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jcb_tipoDato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boolean", "String", "Integer", "Char ", "Double", "Float", "Short", "Byte" }));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Longitud");
+        jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Tipo de Dato");
+        jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Llave Primaria?");
+        jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout jp_CrearCamposLayout = new javax.swing.GroupLayout(jp_CrearCampos);
+        jp_CrearCampos.setLayout(jp_CrearCamposLayout);
+        jp_CrearCamposLayout.setHorizontalGroup(
+            jp_CrearCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jp_ListarCampos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jp_CrearCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jp_CrearCamposLayout.createSequentialGroup()
+                    .addGap(139, 139, 139)
+                    .addGroup(jp_CrearCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                        .addComponent(jb_CrearCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jcb_llavePrimaria)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jcb_tipoDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(js_longitud, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtf_NomCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(140, Short.MAX_VALUE)))
+        );
+        jp_CrearCamposLayout.setVerticalGroup(
+            jp_CrearCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jp_ListarCampos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jp_CrearCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jp_CrearCamposLayout.createSequentialGroup()
+                    .addGap(33, 33, 33)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(jtf_NomCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(js_longitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(jcb_tipoDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jcb_llavePrimaria)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                    .addComponent(jb_CrearCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(33, 33, 33)))
         );
 
         javax.swing.GroupLayout jd_CamposLayout = new javax.swing.GroupLayout(jd_Campos.getContentPane());
         jd_Campos.getContentPane().setLayout(jd_CamposLayout);
         jd_CamposLayout.setHorizontalGroup(
             jd_CamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_CamposLayout.createSequentialGroup()
+                .addComponent(jp_CrearCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jd_CamposLayout.setVerticalGroup(
             jd_CamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jp_CrearCampos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -592,9 +841,9 @@ public class Estru2Proyect extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    
+
     private void jb_Archivos1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jb_Archivos1KeyPressed
-        
+
     }//GEN-LAST:event_jb_Archivos1KeyPressed
 
     private void jb_Archivos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Archivos1ActionPerformed
@@ -602,11 +851,8 @@ public class Estru2Proyect extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_Archivos1ActionPerformed
 
     private void jb_Archivos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_Archivos1MouseClicked
-        
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_jb_Archivos1MouseClicked
 
     private void jb_ArchivosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jb_ArchivosKeyPressed
@@ -658,7 +904,7 @@ public class Estru2Proyect extends javax.swing.JFrame {
     }//GEN-LAST:event_jtf_NomCampo9ActionPerformed
 
     private void jtf_NomCampo10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_NomCampo10ActionPerformed
-        
+
     }//GEN-LAST:event_jtf_NomCampo10ActionPerformed
 
     private void jb_CerrarProgramaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_CerrarProgramaMouseClicked
@@ -675,29 +921,42 @@ public class Estru2Proyect extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_CerrarPrograma1MouseClicked
 
     private void jb_GuardarCamposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_GuardarCamposMouseClicked
-        
-        if(jtf_NomCampo1.equals("")&&jtf_NomCampo2.equals("")&&jtf_NomCampo3.equals("")&&jtf_NomCampo4.equals("")&&
-                jtf_NomCampo5.equals("")&&jtf_NomCampo6.equals("")&&jtf_NomCampo7.equals("")&&jtf_NomCampo8.equals("")&&
-                jtf_NomCampo9.equals("")&&jtf_NomCampo10.equals("")){
-            jtf_NomCampo1.setText("ho");
-            System.out.println("hello world");
-        }
+
     }//GEN-LAST:event_jb_GuardarCamposMouseClicked
 
     private void jb_crearCampoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_crearCampoMouseClicked
         //Prepara para crear Campos
-        jtf_NomCampo1.setText("");jtf_NomCampo2.setText("");
-        jtf_NomCampo3.setText("");jtf_NomCampo4.setText("");
-        jtf_NomCampo5.setText("");jtf_NomCampo6.setText("");
-        jtf_NomCampo7.setText("");jtf_NomCampo8.setText("");
-        jtf_NomCampo9.setText("");jtf_NomCampo10.setText("");
-        //SE OCUPA CODIGO PARA HACER QUE LOS BOTONES ESTEN TODOS DESACTIVADOS, QUE LOS SPINNER ESTEN EN 0 Y COMBO BOXES EN EL MISMO DATO
-        
-        jd_Campos.setVisible(false);
-        jd_CrearCampos.setModal(true);
-        jd_CrearCampos.pack();
-        jd_CrearCampos.setLocationRelativeTo(this);
-        jd_CrearCampos.setVisible(true);
+        //setea los text fields vacios
+//        jtf_NomCampo1.setText("");jtf_NomCampo2.setText("");
+//        jtf_NomCampo3.setText("");jtf_NomCampo4.setText("");
+//        jtf_NomCampo5.setText("");jtf_NomCampo6.setText("");
+//        jtf_NomCampo7.setText("");jtf_NomCampo8.setText("");
+//        jtf_NomCampo9.setText("");jtf_NomCampo10.setText("");
+//        //todos los botones son deseleccionados
+//        jrb_llavePrimaria1.setSelected(true);
+//        //setea los spinners a 0
+//        js_longitud1.setValue(0);js_longitud2.setValue(0);
+//        js_longitud3.setValue(0);js_longitud4.setValue(0);
+//        js_longitud5.setValue(0);js_longitud6.setValue(0);
+//        js_longitud7.setValue(0);js_longitud8.setValue(0);
+//        js_longitud9.setValue(0);js_longitud10.setValue(0);
+//        //setea los combo boxes a boolean
+//        jcb_tipoDato1.setSelectedItem("Boolean");jcb_tipoDato2.setSelectedItem("Boolean");
+//        jcb_tipoDato3.setSelectedItem("Boolean");jcb_tipoDato4.setSelectedItem("Boolean");
+//        jcb_tipoDato5.setSelectedItem("Boolean");jcb_tipoDato6.setSelectedItem("Boolean");
+//        jcb_tipoDato7.setSelectedItem("Boolean");jcb_tipoDato8.setSelectedItem("Boolean");
+//        jcb_tipoDato9.setSelectedItem("Boolean");jcb_tipoDato10.setSelectedItem("Boolean");
+
+        jtf_NomCampo.setText("");
+        jcb_tipoDato.setSelectedItem("Boolean");
+        js_longitud.setValue(0);
+        jcb_llavePrimaria.setSelected(false);
+
+        jp_CrearCampos.setVisible(true);
+        jp_ListarCampos.setVisible(false);
+        jp_ModificarCampos.setVisible(false);
+        jp_BorrarCampos.setVisible(false);
+        jp_Vacio.setVisible(false);
     }//GEN-LAST:event_jb_crearCampoMouseClicked
 
     private void jb_crearCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_crearCampoActionPerformed
@@ -730,21 +989,68 @@ public class Estru2Proyect extends javax.swing.JFrame {
 
     private void jb_GuardarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_GuardarCamposActionPerformed
         boolean check = true; //se pone falso cuando las validaciones detectan algo malo
+
         //verifica si los campos estan vacios
-        if(jtf_NomCampo1.getText().equals("")&&jtf_NomCampo2.getText().equals("")&&jtf_NomCampo3.getText().equals("")&&jtf_NomCampo4.getText().equals("")&&
-                jtf_NomCampo5.getText().equals("")&&jtf_NomCampo6.getText().equals("")&&jtf_NomCampo7.getText().equals("")&&jtf_NomCampo8.getText().equals("")&&
-                jtf_NomCampo9.getText().equals("")&&jtf_NomCampo10.getText().equals("")){
-            JOptionPane.showMessageDialog(rootPane, "Tiene que crear al menos un campo");
-            check = false;
-        }
-        if(jrb_llavePrimaria1.isSelected() != false && jrb_llavePrimaria2.isSelected() != false && jrb_llavePrimaria3.isSelected() != false &&
-                jrb_llavePrimaria4.isSelected() != false && jrb_llavePrimaria5.isSelected() != false && jrb_llavePrimaria6.isSelected() != false && 
-                jrb_llavePrimaria7.isSelected() != false && jrb_llavePrimaria8.isSelected() != false && jrb_llavePrimaria9.isSelected() != false &&
-                jrb_llavePrimaria10.isSelected() != false){
-            JOptionPane.showMessageDialog(rootPane, "Tiene que seleccionar una llave primaria");
-            check = false;
-        }
-        //SE OCUPA VALIDAR SI EL SPINENER ES MAS DE CERO, PERO SOLO EN LOS CAMPOS QUE SE ESTAN HACIENDO
+//        if(jtf_NomCampo1.getText().equals("")&&jtf_NomCampo2.getText().equals("")&&jtf_NomCampo3.getText().equals("")&&jtf_NomCampo4.getText().equals("")&&
+//                jtf_NomCampo5.getText().equals("")&&jtf_NomCampo6.getText().equals("")&&jtf_NomCampo7.getText().equals("")&&jtf_NomCampo8.getText().equals("")&&
+//                jtf_NomCampo9.getText().equals("")&&jtf_NomCampo10.getText().equals("")){
+//            JOptionPane.showMessageDialog(rootPane, "Tiene que crear al menos un campo");
+//            check = false;
+//        }
+//        if(jtf_NomCampo1.getText().equals("") == false && jrb_llavePrimaria1.isSelected() || jtf_NomCampo2.getText().equals("") == false && jrb_llavePrimaria2.isSelected() ||
+//                jtf_NomCampo3.getText().equals("") == false && jrb_llavePrimaria3.isSelected() || jtf_NomCampo4.getText().equals("") == false && jrb_llavePrimaria4.isSelected() ||
+//                jtf_NomCampo5.getText().equals("") == false && jrb_llavePrimaria5.isSelected() || jtf_NomCampo6.getText().equals("") == false && jrb_llavePrimaria6.isSelected() ||
+//                jtf_NomCampo7.getText().equals("") == false && jrb_llavePrimaria7.isSelected() || jtf_NomCampo8.getText().equals("") == false && jrb_llavePrimaria8.isSelected() ||
+//                jtf_NomCampo9.getText().equals("") == false && jrb_llavePrimaria9.isSelected() || jtf_NomCampo10.getText().equals("") == false && jrb_llavePrimaria10.isSelected()){
+//        }else{
+//            JOptionPane.showMessageDialog(rootPane, "Tiene que elegir un campo que sea la llave primaria");
+//            check = false;
+//        }
+//        if(jtf_NomCampo1.getText().equals("") == false && (Integer)js_longitud1.getValue() < 1 || jtf_NomCampo2.getText().equals("") == false && (Integer)js_longitud2.getValue() < 1 ||
+//                jtf_NomCampo3.getText().equals("") == false && (Integer)js_longitud3.getValue() < 1 || jtf_NomCampo4.getText().equals("") == false && (Integer)js_longitud4.getValue() < 1 ||
+//                jtf_NomCampo5.getText().equals("") == false && (Integer)js_longitud5.getValue() < 1 || jtf_NomCampo6.getText().equals("") == false && (Integer)js_longitud6.getValue() < 1 ||
+//                jtf_NomCampo7.getText().equals("") == false && (Integer)js_longitud7.getValue() < 1 || jtf_NomCampo8.getText().equals("") == false && (Integer)js_longitud8.getValue() < 1 ||
+//                jtf_NomCampo9.getText().equals("") == false && (Integer)js_longitud9.getValue() < 1 || jtf_NomCampo10.getText().equals("") == false && (Integer)js_longitud10.getValue() < 1){
+//            JOptionPane.showMessageDialog(rootPane, "No puede tener una longitud de 0 o menos");
+//            check = false;
+//        }
+//    
+//        if(check){
+//            if(jtf_NomCampo1.getText().equals("") == false){
+//                Campos.add(new Campo(jtf_NomCampo1.getText(), (String)jcb_tipoDato1.getSelectedItem(), (int)js_longitud1.getValue(), jrb_llavePrimaria1.isSelected()));
+//            }
+//            if(jtf_NomCampo2.getText().equals("") == false){
+//                Campos.add(new Campo(jtf_NomCampo2.getText(), (String)jcb_tipoDato2.getSelectedItem(), (int)js_longitud2.getValue(), jrb_llavePrimaria2.isSelected()));
+//            }
+//            if(jtf_NomCampo3.getText().equals("") == false){
+//                Campos.add(new Campo(jtf_NomCampo3.getText(), (String)jcb_tipoDato3.getSelectedItem(), (int)js_longitud3.getValue(), jrb_llavePrimaria3.isSelected()));
+//            }
+//            if(jtf_NomCampo4.getText().equals("") == false){
+//                Campos.add(new Campo(jtf_NomCampo4.getText(), (String)jcb_tipoDato4.getSelectedItem(), (int)js_longitud4.getValue(), jrb_llavePrimaria4.isSelected()));
+//            }
+//            if(jtf_NomCampo5.getText().equals("") == false){
+//                Campos.add(new Campo(jtf_NomCampo5.getText(), (String)jcb_tipoDato5.getSelectedItem(), (int)js_longitud5.getValue(), jrb_llavePrimaria5.isSelected()));
+//            }
+//            if(jtf_NomCampo6.getText().equals("") == false){
+//                Campos.add(new Campo(jtf_NomCampo6.getText(), (String)jcb_tipoDato6.getSelectedItem(), (int)js_longitud6.getValue(), jrb_llavePrimaria6.isSelected()));
+//            }
+//            if(jtf_NomCampo7.getText().equals("") == false){
+//                Campos.add(new Campo(jtf_NomCampo7.getText(), (String)jcb_tipoDato7.getSelectedItem(), (int)js_longitud7.getValue(), jrb_llavePrimaria7.isSelected()));
+//            }
+//            if(jtf_NomCampo8.getText().equals("") == false){
+//                Campos.add(new Campo(jtf_NomCampo8.getText(), (String)jcb_tipoDato8.getSelectedItem(), (int)js_longitud8.getValue(), jrb_llavePrimaria8.isSelected()));
+//            }
+//            if(jtf_NomCampo9.getText().equals("") == false){
+//                Campos.add(new Campo(jtf_NomCampo9.getText(), (String)jcb_tipoDato9.getSelectedItem(), (int)js_longitud9.getValue(), jrb_llavePrimaria9.isSelected()));
+//            }
+//            if(jtf_NomCampo10.getText().equals("") == false){
+//                Campos.add(new Campo(jtf_NomCampo10.getText(), (String)jcb_tipoDato10.getSelectedItem(), (int)js_longitud10.getValue(), jrb_llavePrimaria10.isSelected()));
+//            }
+//            for (int i = 0; i < Campos.size(); i++) {
+//                System.out.println(Campos.get(i));
+//            }
+//            System.out.println(Campos.size());
+//        }
     }//GEN-LAST:event_jb_GuardarCamposActionPerformed
 
     private void jrb_llavePrimaria2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrb_llavePrimaria2ActionPerformed
@@ -754,6 +1060,104 @@ public class Estru2Proyect extends javax.swing.JFrame {
     private void jb_CerrarPrograma1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_CerrarPrograma1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jb_CerrarPrograma1ActionPerformed
+
+    private void jtf_NomCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_NomCampoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtf_NomCampoActionPerformed
+
+    private void jb_Campos2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Campos2ActionPerformed
+        if (Campos.isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "No hay Campos");
+        } else {
+            DefaultTableModel tm = (DefaultTableModel) jt_ListarCampos.getModel();
+            tm.setRowCount(0);
+            for (int i = 0; i < Campos.size(); i++) {
+                Object[] temp = new Object[4];
+                temp[0] = Campos.get(i).getNombre();
+                temp[1] = Campos.get(i).getTipo();
+                temp[2] = Campos.get(i).getLongitud();
+                temp[3] = Campos.get(i).isLlavePrimaria();
+                tm.addRow(temp);
+            }
+
+            jt_ListarCampos.setModel(tm);
+            jp_CrearCampos.setVisible(true);
+            jp_ListarCampos.setVisible(true);
+            jp_ModificarCampos.setVisible(false);
+            jp_BorrarCampos.setVisible(false);
+            jp_Vacio.setVisible(false);
+        }
+
+    }//GEN-LAST:event_jb_Campos2ActionPerformed
+
+    private void jb_CrearCampoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_CrearCampoMouseClicked
+        if (Campos.size() < 10) {
+            boolean check = true;
+            if (jtf_NomCampo.getText().equals("")) {
+                JOptionPane.showMessageDialog(rootPane, "Tiene que crear al menos un campo");
+                check = false;
+            }
+            if ((int) js_longitud.getValue() < 1) {
+                JOptionPane.showMessageDialog(rootPane, "La longitud debe ser mas de 0");
+                check = false;
+            }
+
+            if (Campos.isEmpty() && jcb_llavePrimaria.isSelected() == false) {
+                jcb_llavePrimaria.setSelected(true);
+            } else if (jcb_llavePrimaria.isSelected()) {
+
+                for (int i = 0; i < Campos.size(); i++) {
+                    if (Campos.get(i).isLlavePrimaria()) {
+                        Campos.get(i).setLlavePrimaria(false);
+                    }
+                }
+            }
+
+            if (check) {
+                Campos.add(new Campo(jtf_NomCampo.getText(), (String) jcb_tipoDato.getSelectedItem(), (int) js_longitud.getValue(), jcb_llavePrimaria.isSelected()));
+            }
+
+            jtf_NomCampo.setText("");
+            jcb_tipoDato.setSelectedItem("Boolean");
+            js_longitud.setValue(0);
+            jcb_llavePrimaria.setSelected(false);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Hay un maximo de 10 Campos");
+        }
+
+    }//GEN-LAST:event_jb_CrearCampoMouseClicked
+
+    private void jb_Indices2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Indices2ActionPerformed
+        if (Campos.isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "No hay Campos");
+        } else {
+            DefaultListModel lm = new DefaultListModel();
+            lm.addAll(Campos);
+            jl_Borrar.setModel(lm);
+            jp_CrearCampos.setVisible(true);
+            jp_ListarCampos.setVisible(true);
+            jp_ModificarCampos.setVisible(true);
+            jp_BorrarCampos.setVisible(true);
+            jp_Vacio.setVisible(false);
+        }
+
+
+    }//GEN-LAST:event_jb_Indices2ActionPerformed
+
+    private void jl_BorrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_BorrarMouseClicked
+        
+    }//GEN-LAST:event_jl_BorrarMouseClicked
+
+    private void jb_borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_borrarActionPerformed
+        cam = Campos.get(jl_Borrar.getSelectedIndex());
+        Campos.remove(jl_Borrar.getSelectedIndex());
+        if(Campos.size() >= 1 && cam.isLlavePrimaria() == true){
+            Campos.get(0).setLlavePrimaria(true);
+        }
+        DefaultListModel lm = new DefaultListModel();
+        lm.addAll(Campos);
+        jl_Borrar.setModel(lm);
+    }//GEN-LAST:event_jb_borrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -798,10 +1202,16 @@ public class Estru2Proyect extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton jb_Archivos;
@@ -812,6 +1222,7 @@ public class Estru2Proyect extends javax.swing.JFrame {
     private javax.swing.JButton jb_CerrarPrograma;
     private javax.swing.JButton jb_CerrarPrograma1;
     private javax.swing.JButton jb_CerrarPrograma2;
+    private javax.swing.JButton jb_CrearCampo;
     private javax.swing.JButton jb_GuardarCampos;
     private javax.swing.JButton jb_Indices;
     private javax.swing.JButton jb_Indices1;
@@ -819,7 +1230,10 @@ public class Estru2Proyect extends javax.swing.JFrame {
     private javax.swing.JButton jb_Registros;
     private javax.swing.JButton jb_Registros1;
     private javax.swing.JButton jb_Registros2;
+    private javax.swing.JButton jb_borrar;
     private javax.swing.JButton jb_crearCampo;
+    private javax.swing.JCheckBox jcb_llavePrimaria;
+    private javax.swing.JComboBox<String> jcb_tipoDato;
     private javax.swing.JComboBox<String> jcb_tipoDato1;
     private javax.swing.JComboBox<String> jcb_tipoDato10;
     private javax.swing.JComboBox<String> jcb_tipoDato2;
@@ -833,6 +1247,12 @@ public class Estru2Proyect extends javax.swing.JFrame {
     private javax.swing.JDialog jd_Archivos;
     private javax.swing.JDialog jd_Campos;
     private javax.swing.JDialog jd_CrearCampos;
+    private javax.swing.JList<Campo> jl_Borrar;
+    private javax.swing.JPanel jp_BorrarCampos;
+    private javax.swing.JPanel jp_CrearCampos;
+    private javax.swing.JPanel jp_ListarCampos;
+    private javax.swing.JPanel jp_ModificarCampos;
+    private javax.swing.JPanel jp_Vacio;
     private javax.swing.JRadioButton jrb_llavePrimaria1;
     private javax.swing.JRadioButton jrb_llavePrimaria10;
     private javax.swing.JRadioButton jrb_llavePrimaria2;
@@ -843,6 +1263,7 @@ public class Estru2Proyect extends javax.swing.JFrame {
     private javax.swing.JRadioButton jrb_llavePrimaria7;
     private javax.swing.JRadioButton jrb_llavePrimaria8;
     private javax.swing.JRadioButton jrb_llavePrimaria9;
+    private javax.swing.JSpinner js_longitud;
     private javax.swing.JSpinner js_longitud1;
     private javax.swing.JSpinner js_longitud10;
     private javax.swing.JSpinner js_longitud2;
@@ -853,6 +1274,8 @@ public class Estru2Proyect extends javax.swing.JFrame {
     private javax.swing.JSpinner js_longitud7;
     private javax.swing.JSpinner js_longitud8;
     private javax.swing.JSpinner js_longitud9;
+    private javax.swing.JTable jt_ListarCampos;
+    private javax.swing.JTextField jtf_NomCampo;
     private javax.swing.JTextField jtf_NomCampo1;
     private javax.swing.JTextField jtf_NomCampo10;
     private javax.swing.JTextField jtf_NomCampo2;
@@ -865,4 +1288,5 @@ public class Estru2Proyect extends javax.swing.JFrame {
     private javax.swing.JTextField jtf_NomCampo9;
     // End of variables declaration//GEN-END:variables
     ArrayList<Campo> Campos = new ArrayList();
+    Campo cam;
 }
