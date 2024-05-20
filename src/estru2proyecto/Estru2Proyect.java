@@ -13,6 +13,8 @@ import java.util.LinkedList;
 import javax.swing.JOptionPane;
 import javax.swing.*;
 import java.awt.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.text.TableView.TableRow;
@@ -161,17 +163,22 @@ public class Estru2Proyect extends javax.swing.JFrame {
         jb_Campos1.setBackground(new java.awt.Color(125, 125, 241));
         jb_Campos1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jb_Campos1.setForeground(new java.awt.Color(22, 22, 79));
-        jb_Campos1.setText("M");
+        jb_Campos1.setText("Abrir Archivo");
 
         jb_Registros1.setBackground(new java.awt.Color(125, 125, 241));
         jb_Registros1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jb_Registros1.setForeground(new java.awt.Color(22, 22, 79));
-        jb_Registros1.setText("Registros");
+        jb_Registros1.setText("Salvar Archivo");
+        jb_Registros1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_Registros1ActionPerformed(evt);
+            }
+        });
 
         jb_Indices1.setBackground(new java.awt.Color(125, 125, 241));
         jb_Indices1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jb_Indices1.setForeground(new java.awt.Color(22, 22, 79));
-        jb_Indices1.setText("Indices");
+        jb_Indices1.setText("Cerrar Archivo");
 
         jb_CerrarPrograma1.setBackground(new java.awt.Color(206, 115, 121));
         jb_CerrarPrograma1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -909,7 +916,16 @@ public class Estru2Proyect extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_Archivos1KeyPressed
 
     private void jb_Archivos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Archivos1ActionPerformed
-        // TODO add your handling code here:
+       //File archivo;
+       String nombre=JOptionPane.showInputDialog(null, "Ingrese el nombre del archivo");
+       archivo = new File("./"+nombre+".txt");
+        System.out.println(nombre);
+        try {
+            if(archivo.createNewFile()){
+                JOptionPane.showMessageDialog(null, "Se ha creado el archivo correctamente");
+            }} catch (IOException ex) {
+            Logger.getLogger(Estru2Proyect.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jb_Archivos1ActionPerformed
 
     private void jb_Archivos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_Archivos1MouseClicked
@@ -1283,6 +1299,19 @@ public class Estru2Proyect extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jb_ModificarCamposActionPerformed
 
+    private void jb_Registros1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Registros1ActionPerformed
+        for (int i = 0; i < Campos.size(); i++) {
+            try {
+                BufferedWriter bw;
+                bw = new BufferedWriter(new FileWriter(archivo));
+                String tipo = Campos.get(i).getTipo()+"["+Campos.get(i).getLongitud()+"]";
+                bw.write(tipo);
+            } catch (IOException ex) {
+                Logger.getLogger(Estru2Proyect.class.getName()).log(Level.SEVERE, null, ex);
+            }              
+        }
+    }//GEN-LAST:event_jb_Registros1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1417,5 +1446,6 @@ public class Estru2Proyect extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     ArrayList<Campo> Campos = new ArrayList();
     Campo cam;
+    File archivo;
     boolean modificar = false;
 }

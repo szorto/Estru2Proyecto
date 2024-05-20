@@ -96,7 +96,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="4f" green="16" red="16" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="M"/>
+                <Property name="text" type="java.lang.String" value="Abrir Archivo"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="jb_Registros1">
@@ -110,8 +110,11 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="4f" green="16" red="16" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Registros"/>
+                <Property name="text" type="java.lang.String" value="Salvar Archivo"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb_Registros1ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jb_Indices1">
               <Properties>
@@ -124,7 +127,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="4f" green="16" red="16" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Indices"/>
+                <Property name="text" type="java.lang.String" value="Cerrar Archivo"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="jb_CerrarPrograma1">
