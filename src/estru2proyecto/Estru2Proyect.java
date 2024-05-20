@@ -110,6 +110,7 @@ public class Estru2Proyect extends javax.swing.JFrame {
         jp_ModificarCampos = new javax.swing.JPanel();
         jp_BorrarCampos = new javax.swing.JPanel();
         jp_Vacio = new javax.swing.JPanel();
+        jSeparator3 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         jl_Borrar = new javax.swing.JList<>();
         jb_borrar = new javax.swing.JButton();
@@ -439,8 +440,11 @@ public class Estru2Proyect extends javax.swing.JFrame {
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
         );
 
-        jPanel4.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel4.setBackground(new java.awt.Color(175, 175, 255));
 
+        jb_crearCampo.setBackground(new java.awt.Color(125, 125, 241));
+        jb_crearCampo.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jb_crearCampo.setForeground(new java.awt.Color(22, 22, 79));
         jb_crearCampo.setText("Crear Campos");
         jb_crearCampo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -458,6 +462,9 @@ public class Estru2Proyect extends javax.swing.JFrame {
             }
         });
 
+        jb_Campos2.setBackground(new java.awt.Color(125, 125, 241));
+        jb_Campos2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jb_Campos2.setForeground(new java.awt.Color(22, 22, 79));
         jb_Campos2.setText("Listar");
         jb_Campos2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -465,6 +472,9 @@ public class Estru2Proyect extends javax.swing.JFrame {
             }
         });
 
+        jb_Registros2.setBackground(new java.awt.Color(125, 125, 241));
+        jb_Registros2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jb_Registros2.setForeground(new java.awt.Color(22, 22, 79));
         jb_Registros2.setText("Modificar");
         jb_Registros2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -472,6 +482,9 @@ public class Estru2Proyect extends javax.swing.JFrame {
             }
         });
 
+        jb_Indices2.setBackground(new java.awt.Color(125, 125, 241));
+        jb_Indices2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jb_Indices2.setForeground(new java.awt.Color(22, 22, 79));
         jb_Indices2.setText("Borrar");
         jb_Indices2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -527,17 +540,20 @@ public class Estru2Proyect extends javax.swing.JFrame {
 
         jp_BorrarCampos.setBackground(new java.awt.Color(153, 153, 153));
 
-        jp_Vacio.setBackground(new java.awt.Color(153, 153, 153));
+        jp_Vacio.setBackground(new java.awt.Color(112, 112, 209));
 
         javax.swing.GroupLayout jp_VacioLayout = new javax.swing.GroupLayout(jp_Vacio);
         jp_Vacio.setLayout(jp_VacioLayout);
         jp_VacioLayout.setHorizontalGroup(
             jp_VacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 494, Short.MAX_VALUE)
+            .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
         );
         jp_VacioLayout.setVerticalGroup(
             jp_VacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 514, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_VacioLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(96, 96, 96))
         );
 
         jl_Borrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -688,6 +704,9 @@ public class Estru2Proyect extends javax.swing.JFrame {
             }
         });
 
+        jb_CrearCampo.setBackground(new java.awt.Color(151, 151, 210));
+        jb_CrearCampo.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jb_CrearCampo.setForeground(new java.awt.Color(22, 22, 79));
         jb_CrearCampo.setText("Crear");
         jb_CrearCampo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1320,6 +1339,7 @@ public class Estru2Proyect extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JButton jb_Archivos;
     private javax.swing.JButton jb_Archivos1;
     private javax.swing.JButton jb_Campos;
